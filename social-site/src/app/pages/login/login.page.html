@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      Login
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="formSubmit()">
+        <ion-item>
+          <ion-input
+            type="text"
+            placeholder="username"
+            [(ngModel)]="login.username"
+            name="username"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            type="password"
+            placeholder="password"
+            [(ngModel)]="login.password"
+            name="password"
+          ></ion-input>
+        </ion-item>
+        <ion-button type="submit">
+          LOGIN
+        </ion-button>
+      </form>
+      <br />
+      <ion-row>
+        <ion-router-link color="tertiary" href="/forgotpassword"
+          >Forgot password? Click here</ion-router-link
+        >
+      </ion-row>
+      <br />
+      <ion-row>
+        <ion-router-link color="tertiary" href="/register"
+          >New User? Click here to register</ion-router-link
+        >
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

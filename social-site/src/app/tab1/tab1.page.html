@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Home</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-fab vertical="bottom" horizontal="end" color="teritary" slot="fixed">
+    <ion-fab-button (click)="gotoChatRoom()">
+      <ion-icon name="chatbubbles"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+  <!-- ion-slides from here -->
+  <ion-slides [options]="slideOptions1">
+    <ion-slide>
+      <ion-card class="margin">
+        <ion-card-header>
+          <img src="../../assets/images/unnamed.jpg" />
+        </ion-card-header>
+        <ion-card-content>
+          SHARE YOUR THOUGHTS
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="margin">
+        <ion-card-header>
+          <img src="../../assets/images/download.jfif" alt="" />
+        </ion-card-header>
+        <ion-card-content>
+          EXPRESS YOUR FEELINGS
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="margin">
+        <ion-card-header>
+          <img src="../../assets/images/SCO_020118_Banner.jpg" alt="" />
+        </ion-card-header>
+        <ion-card-content>
+          BE ANONYMOUS 😎
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <!-- slides end -->
+
+  <ion-card>
+    <p style="margin: 3%;">Featured Users</p>
+  </ion-card>
+
+  <!-- Crescent -->
+  <p style="text-align: center; font-size: xx-large;" *ngIf="!users"><ion-spinner name="crescent"></ion-spinner></p>
+
+  <ion-slides [options]="slideOptions" style="margin: 2%;">
+    <ion-slide class="slide" *ngFor="let user of users">
+      <p style="font-size: xx-small; margin-top: 90%;">
+        {{user.username|uppercase}}
+      </p>
+    </ion-slide>
+  </ion-slides>
+  <ion-card *ngFor="let status of publicStatus">
+    <ion-card-header
+      style="
+        font-size: small;
+        font-weight: bolder;
+        color: rgb(17, 23, 77);
+        float: right;
+      "
+    >
+      {{status.dateTime}}
+    </ion-card-header>
+    <ion-card-header
+      style="
+        font-size: small;
+        font-weight: bolder;
+        color: rgb(23, 22, 71);
+        float: left;
+      "
+    >
+      -anonymous </ion-card-header
+    ><br /><br /><br />
+    <ion-card-content style="font-size: x-small;">
+      <p style="text-align: left;">{{status.body}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

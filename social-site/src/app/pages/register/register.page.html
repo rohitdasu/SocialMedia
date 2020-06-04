@@ -1,0 +1,156 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button defaultHref="/" slot="start"></ion-back-button>
+    <ion-title>Register User</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      Register
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formRegister" (ngSubmit)="formSubmit()">
+        <ion-item>
+          <ion-input
+            formControlName="name"
+            [(ngModel)]="register.name"
+            name="name"
+            placeholder="name"
+          >
+          </ion-input>
+        </ion-item>
+        <p
+          *ngIf="
+            registerFormControl.name.touched &&
+            registerFormControl.name.errors?.minlength
+          "
+        >
+          *It should have 6 letters
+        </p>
+        <p
+          *ngIf="
+            registerFormControl.name.touched &&
+            registerFormControl.name.errors?.required
+          "
+        >
+          *Please fill up the field
+        </p>
+        <ion-item>
+          <ion-input
+            formControlName="username"
+            [(ngModel)]="register.username"
+            placeholder="username"
+          >
+          </ion-input>
+        </ion-item>
+        <p
+          *ngIf="
+            registerFormControl.username.touched &&
+            registerFormControl.username.errors?.minlength
+          "
+        >
+          *It should have minimum 5 letters
+        </p>
+        <p
+          *ngIf="
+            registerFormControl.username.touched &&
+            registerFormControl.username.errors?.required
+          "
+        >
+          *Please fill up the field
+        </p>
+        <p
+          *ngIf="
+            registerFormControl.username.touched &&
+            registerFormControl.username.errors?.maxlength
+          "
+        >
+          *Username should not be more than 10 letters
+        </p>
+        <ion-item>
+          <ion-input
+            formControlName="password"
+            [(ngModel)]="register.password"
+            placeholder="password"
+          >
+          </ion-input>
+        </ion-item>
+        <p
+          *ngIf="
+            registerFormControl.password.touched &&
+            registerFormControl.password.errors?.minlength
+          "
+        >
+          *It should have 6 letters
+        </p>
+        <p
+          *ngIf="
+            registerFormControl.password.touched &&
+            registerFormControl.password.errors?.required
+          "
+        >
+          *Please fill up the field
+        </p>
+        <ion-item>
+          <ion-input
+            formControlName="phone"
+            [(ngModel)]="register.phone"
+            placeholder="phone"
+          >
+          </ion-input>
+        </ion-item>
+        <p
+          *ngIf="
+            registerFormControl.phone.touched &&
+            registerFormControl.phone.errors?.required
+          "
+        >
+          *Please fill the mobile number
+        </p>
+        <p
+          *ngIf="
+            registerFormControl.phone.touched &&
+            registerFormControl.phone.errors?.pattern
+          "
+        >
+          *Invalid input
+        </p>
+        <ion-item>
+          <ion-input
+            formControlName="email"
+            [(ngModel)]="register.email"
+            placeholder="email"
+          >
+          </ion-input>
+        </ion-item>
+        <p
+          *ngIf="
+            registerFormControl.email.touched &&
+            registerFormControl.email.errors?.email
+          "
+        >
+          *Invalid email
+        </p>
+        <p
+          *ngIf="
+            registerFormControl.email.touched &&
+            registerFormControl.email.errors?.required
+          "
+        >
+          *Please fill up the field
+        </p>
+        <ion-button type="submit">
+          Register
+        </ion-button>
+      </form>
+      <br />
+      <ion-row>
+        <ion-router-link color="tertiary" href="/"
+          >Already have an account? Click here</ion-router-link
+        >
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

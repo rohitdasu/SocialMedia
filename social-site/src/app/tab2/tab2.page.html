@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Profile</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card class="cover"></ion-card>
+  <ion-avatar class="avatar">
+    <img src="../../assets/images/profile.png" alt="" />
+  </ion-avatar>
+  <p
+    style="
+      text-align: center;
+      margin: 1%;
+      font-weight: bold;
+      font-size: larger;
+      color: rgb(35, 7, 102);
+    "
+  >
+    {{username|uppercase}}
+  </p>
+  <ion-item-divider style="background: transparent;"></ion-item-divider>
+  <div class="container">
+    <ion-item>
+      <ion-textarea
+        type="text"
+        [(ngModel)]="statusStatus"
+        placeholder="Status Update"
+        name="body"
+      ></ion-textarea>
+    </ion-item>
+    <ion-button (click)="statusUpdate()">
+      Update
+    </ion-button>
+  </div>
+  <!-- Crescent -->
+  <p style="text-align: center; font-size: xx-large;" *ngIf="!mystatus"><ion-spinner name="crescent"></ion-spinner></p>
+  <ion-card *ngFor="let status of mystatus" class="radius">
+    <ion-card-header
+      style="font-size: small; font-weight: bolder; color: rgb(26, 11, 90); float: right;"
+    >
+      {{status.dateTime}}
+    </ion-card-header>
+    <ion-card-header
+      style="font-size: small; font-weight: bolder; color: rgb(23, 5, 71); float: left;"
+    >
+      -{{username}} </ion-card-header
+    ><br /><br /><br>
+    <ion-card-content style="text-align: left;">
+      {{status.body}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

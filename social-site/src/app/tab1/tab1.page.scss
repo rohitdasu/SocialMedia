@@ -1,0 +1,13 @@
+// ion-content {
+//     --background: url(../../assets/images/photo-1557683304-673a23048d34.jfif) 0 0/100%
+//       100% no-repeat;
+//   }
+.slide {
+    background-image: url(../../assets/images/profile.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100px;
+    margin: 1%;
+    border-radius: 20px;
+  }
