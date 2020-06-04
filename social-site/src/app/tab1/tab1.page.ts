@@ -11,7 +11,12 @@ import { Router } from "@angular/router";
 export class Tab1Page {
   slideOptions = {
     pager: false,
-    slidesPerView: 4,
+    slidesPerView: 3.7,
+    autoplay: true,
+    loop: true,
+  };
+  slideOptions1 = {
+    pager: true,
     autoplay: true,
     loop: true,
   };

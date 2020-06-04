@@ -1,14 +1,13 @@
-<ion-header>
+<ion-header mode="ios">
   <ion-toolbar>
-    <ion-back-button defaultHref="/" slot="start"></ion-back-button>
+    <ion-back-button defaultHref="/" color=dark slot="start"></ion-back-button>
     <ion-title>Register User</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content mode="ios">
   <ion-card>
     <ion-card-header>
-      Register
     </ion-card-header>
     <ion-card-content>
       <form [formGroup]="formRegister" (ngSubmit)="formSubmit()">
@@ -141,13 +140,13 @@
         >
           *Please fill up the field
         </p>
-        <ion-button type="submit">
+        <ion-button color=dark type="submit">
           Register
         </ion-button>
       </form>
       <br />
       <ion-row>
-        <ion-router-link color="tertiary" href="/"
+        <ion-router-link color="dark" href="/"
           >Already have an account? Click here</ion-router-link
         >
       </ion-row>

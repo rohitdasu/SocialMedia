@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header mode="ios">
   <ion-toolbar>
     <ion-title>
       Home
@@ -6,25 +6,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Home</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-fab vertical="bottom" horizontal="end" color="teritary" slot="fixed">
-    <ion-fab-button (click)="gotoChatRoom()">
+<ion-content [fullscreen]="true" mode="ios">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="gotoChatRoom()" color="dark">
       <ion-icon name="chatbubbles"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
+
   <!-- ion-slides from here -->
   <ion-slides [options]="slideOptions1">
     <ion-slide>
       <ion-card class="margin">
-        <ion-card-header>
-          <img src="../../assets/images/unnamed.jpg" />
+        <ion-card-header class="headerclass1">
+          <!-- <img src="../../assets/images/unnamed.jpg" /> -->
         </ion-card-header>
         <ion-card-content>
           SHARE YOUR THOUGHTS
@@ -33,8 +27,8 @@
     </ion-slide>
     <ion-slide>
       <ion-card class="margin">
-        <ion-card-header>
-          <img src="../../assets/images/download.jfif" alt="" />
+        <ion-card-header class="headerclass2">
+          <!-- <img src="../../assets/images/download.jfif" alt="" /> -->
         </ion-card-header>
         <ion-card-content>
           EXPRESS YOUR FEELINGS
@@ -43,8 +37,8 @@
     </ion-slide>
     <ion-slide>
       <ion-card class="margin">
-        <ion-card-header>
-          <img src="../../assets/images/SCO_020118_Banner.jpg" alt="" />
+        <ion-card-header class="headerclass3">
+          <!-- <img src="../../assets/images/SCO_020118_Banner.jpg" alt="" /> -->
         </ion-card-header>
         <ion-card-content>
           BE ANONYMOUS 😎
@@ -55,11 +49,13 @@
   <!-- slides end -->
 
   <ion-card>
-    <p style="margin: 3%;">Featured Users</p>
+    <p style="margin: 3%; color: black;">Featured Users</p>
   </ion-card>
 
   <!-- Crescent -->
-  <p style="text-align: center; font-size: xx-large;" *ngIf="!users"><ion-spinner name="crescent"></ion-spinner></p>
+  <p style="text-align: center; font-size: xx-large;" *ngIf="!users && !publicStatus">
+    <ion-spinner name="crescent"></ion-spinner>
+  </p>
 
   <ion-slides [options]="slideOptions" style="margin: 2%;">
     <ion-slide class="slide" *ngFor="let user of users">

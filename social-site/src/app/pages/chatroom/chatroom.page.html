@@ -1,11 +1,11 @@
-<ion-header>
+<ion-header mode="ios">
   <ion-toolbar>
-    <ion-back-button defaultHref="/tabs/tab1" slot="start"></ion-back-button>
+    <ion-back-button color=dark defaultHref="/tabs/tab1" slot="start"></ion-back-button>
     <ion-title>Chat Room</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content mode="ios">
   <ion-grid>
     <ion-text color="medium" text-center>
       <p style="color: white;">You joined the chat as {{ currentUser }}</p>
@@ -60,7 +60,7 @@
           class="msg-btn"
           (click)="sendMessage()"
         >
-          <ion-icon name="send-outline"></ion-icon
+          <ion-icon color=dark name="send-outline"></ion-icon
         ></ion-button>
       </ion-col>
     </ion-row>

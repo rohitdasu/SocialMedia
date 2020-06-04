@@ -1,13 +1,12 @@
-<ion-header>
+<ion-header mode="ios">
   <ion-toolbar>
     <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content mode="ios">
   <ion-card>
     <ion-card-header>
-      Login
     </ion-card-header>
     <ion-card-content>
       <form (ngSubmit)="formSubmit()">
@@ -27,19 +26,19 @@
             name="password"
           ></ion-input>
         </ion-item>
-        <ion-button type="submit">
+        <ion-button type="submit" color=dark>
           LOGIN
         </ion-button>
       </form>
       <br />
       <ion-row>
-        <ion-router-link color="tertiary" href="/forgotpassword"
+        <ion-router-link color="dark" href="/forgotpassword"
           >Forgot password? Click here</ion-router-link
         >
       </ion-row>
       <br />
       <ion-row>
-        <ion-router-link color="tertiary" href="/register"
+        <ion-router-link color="dark" href="/register"
           >New User? Click here to register</ion-router-link
         >
       </ion-row>
