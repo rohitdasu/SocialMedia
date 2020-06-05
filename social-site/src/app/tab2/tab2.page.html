@@ -32,25 +32,94 @@
         name="body"
       ></ion-textarea>
     </ion-item>
-    <ion-button color=dark (click)="statusUpdate()">
+    <ion-button color="dark" (click)="statusUpdate()">
       Update
     </ion-button>
   </div>
   <!-- Crescent -->
-  <p style="text-align: center; font-size: xx-large;" *ngIf="!mystatus"><ion-spinner name="crescent"></ion-spinner></p>
-  <ion-card *ngFor="let status of mystatus" class="radius" mode="ios">
+  <p style="text-align: center;" *ngIf="spinner">
+    <ion-spinner name="crescent"></ion-spinner>
+  </p>
+  <ion-card *ngFor="let status of mystatus" mode="ios">
     <ion-card-header
-      style="font-size: small; font-weight: bolder; color: rgb(26, 11, 90); float: right;"
+      style="
+        font-size: small;
+        font-weight: bolder;
+        color: rgb(26, 11, 90);
+        float: right;
+      "
     >
       {{status.dateTime}}
     </ion-card-header>
     <ion-card-header
-      style="font-size: small; font-weight: bolder; color: rgb(23, 5, 71); float: left;"
+      style="
+        font-size: small;
+        font-weight: bolder;
+        color: rgb(23, 5, 71);
+        float: left;
+      "
     >
       -{{username}} </ion-card-header
-    ><br /><br /><br>
+    ><br /><br /><br />
     <ion-card-content style="text-align: left;">
       {{status.body}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="!mystatus" mode="ios">
+    <ion-card-header
+      style="
+        font-size: small;
+        font-weight: bolder;
+        color: rgb(26, 11, 90);
+        float: right;
+      "
+    >
+      <ion-skeleton-text animated style="width: 20%;"></ion-skeleton-text>
+    </ion-card-header>
+    <ion-card-header
+      style="
+        font-size: small;
+        font-weight: bolder;
+        color: rgb(23, 5, 71);
+        float: left;
+      "
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 20%;"
+      ></ion-skeleton-text> </ion-card-header
+    ><br /><br /><br />
+    <ion-card-content style="text-align: left;">
+      <ion-skeleton-text animated style="width: 20%;"></ion-skeleton-text>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="!mystatus" mode="ios">
+    <ion-card-header
+      style="
+        font-size: small;
+        font-weight: bolder;
+        color: rgb(26, 11, 90);
+        float: right;
+      "
+    >
+      <ion-skeleton-text animated style="width: 20%;"></ion-skeleton-text>
+    </ion-card-header>
+    <ion-card-header
+      style="
+        font-size: small;
+        font-weight: bolder;
+        color: rgb(23, 5, 71);
+        float: left;
+      "
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 20%;"
+      ></ion-skeleton-text> </ion-card-header
+    ><br /><br /><br />
+    <ion-card-content style="text-align: left;">
+      <ion-skeleton-text animated style="width: 20%;"></ion-skeleton-text>
     </ion-card-content>
   </ion-card>
 </ion-content>

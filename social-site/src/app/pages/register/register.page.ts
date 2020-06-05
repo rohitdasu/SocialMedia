@@ -5,7 +5,7 @@ import {
   FormControl,
   FormBuilder,
 } from "@angular/forms";
-import { AlertController, LoadingController } from "@ionic/angular";
+import { AlertController, LoadingController, ToastController } from "@ionic/angular";
 import { ApicallsService } from "src/app/shared/apicalls.service";
 import { Router } from "@angular/router";
 
@@ -15,6 +15,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./register.page.scss"],
 })
 export class RegisterPage implements OnInit {
+  spinner:boolean=false;
   register = { username: "", password: "", name: "", phone: "", email: "" };
   formRegister: FormGroup;
   phonePattern = "^((\\+91-?)|0)?[0-9]{10}$";
@@ -24,21 +25,9 @@ export class RegisterPage implements OnInit {
     private formBuilder: FormBuilder,
     public alertController: AlertController,
     private apicalls: ApicallsService,
-    private router: Router
+    private router: Router,
+    private toastCtrl:ToastController
   ) {}
-
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      cssClass: "my-custom-class",
-      message: "Please wait...",
-      duration: 3000,
-    });
-    await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
-    console.log("Loading dismissed!");
-  }
-
   ngOnInit() {
     this.formRegister = this.formBuilder.group({
       password: new FormControl(
@@ -74,9 +63,17 @@ export class RegisterPage implements OnInit {
   get registerFormControl() {
     return this.formRegister.controls;
   }
+  async showToast() {
+    let toast = await this.toastCtrl.create({
+      message: "Please verify the email verification step",
+      position: "middle",
+      duration: 5000,
+    });
+    toast.present();
+  }
   formSubmit() {
     if (this.formRegister.valid) {
-      this.presentLoading();
+      this.spinner=true;
       this.apicalls
         .register(
           this.register.username,
@@ -87,8 +84,11 @@ export class RegisterPage implements OnInit {
         )
         .subscribe((data) => {
           if (data == true) {
-            this.success();
+            this.spinner=false;
+            this.showToast();
+            this.router.navigate(['/'])
           } else {
+            this.spinner=false;
             this.failed();
           }
         });

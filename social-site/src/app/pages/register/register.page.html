@@ -70,6 +70,7 @@
         </p>
         <ion-item>
           <ion-input
+            type="password"
             formControlName="password"
             [(ngModel)]="register.password"
             placeholder="password"
@@ -152,4 +153,6 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
+  <!-- Default Spinner -->
+  <p style="text-align: center;" *ngIf="spinner"><ion-spinner name="crescent"></ion-spinner></p>
 </ion-content>

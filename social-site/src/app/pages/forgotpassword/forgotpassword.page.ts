@@ -9,6 +9,7 @@ import { ApicallsService } from "src/app/shared/apicalls.service";
 })
 export class ForgotpasswordPage implements OnInit {
   username;
+  spinner:boolean=false;
   constructor(
     public loadingController: LoadingController,
     public alertController: AlertController,
@@ -16,23 +17,17 @@ export class ForgotpasswordPage implements OnInit {
   ) {}
 
   ngOnInit() {}
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      cssClass: "my-custom-class",
-      message: "Please wait...",
-      duration: 2000,
-    });
-    await loading.present();
-  }
   recover() {
     if (this.username == undefined) {
       this.empty();
     } else {
-      this.presentLoading();
+      this.spinner=true;
       this.myapi.recover(this.username).subscribe((data) => {
         if (data == true) {
+          this.spinner=false;
           this.success();
         } else {
+          this.spinner=false;
           this.failed();
         }
       });

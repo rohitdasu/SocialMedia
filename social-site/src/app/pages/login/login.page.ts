@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./login.page.scss"],
 })
 export class LoginPage implements OnInit {
+  spinner:boolean=false;
   login = { username: "", password: "" };
   constructor(
     public alertController: AlertController,
@@ -17,28 +18,23 @@ export class LoginPage implements OnInit {
     public loadingController: LoadingController
   ) {}
 
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      cssClass: "my-custom-class",
-      message: "Please wait...",
-      duration: 3000,
-    });
-    await loading.present();
-  }
-
   ngOnInit() {}
   formSubmit() {
     if (this.login.username == "" || this.login.password == "") {
       this.emptyFields();
     } else {
-      this.presentLoading();
+      this.spinner=true;
       this.apicalls
         .login(this.login.username, this.login.password)
         .subscribe((data) => {
           if (data == true) {
+            this.spinner=false;
             localStorage.setItem("username", this.login.username);
+            this.login.username="";
+            this.login.password="";
             this.router.navigate(["/tabs"]);
           } else {
+            this.spinner=false;
             this.loginFail();
           }
         });

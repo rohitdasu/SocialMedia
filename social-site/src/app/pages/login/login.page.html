@@ -6,8 +6,7 @@
 
 <ion-content mode="ios">
   <ion-card>
-    <ion-card-header>
-    </ion-card-header>
+    <ion-card-header> </ion-card-header>
     <ion-card-content>
       <form (ngSubmit)="formSubmit()">
         <ion-item>
@@ -26,7 +25,7 @@
             name="password"
           ></ion-input>
         </ion-item>
-        <ion-button type="submit" color=dark>
+        <ion-button type="submit" color="dark">
           LOGIN
         </ion-button>
       </form>
@@ -44,4 +43,6 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
+  <!-- Default Spinner -->
+  <p style="text-align: center;" *ngIf="spinner"><ion-spinner name="crescent"></ion-spinner></p>
 </ion-content>

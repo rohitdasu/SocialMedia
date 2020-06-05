@@ -10,6 +10,7 @@ import { AlertController, LoadingController } from "@ionic/angular";
 })
 export class Tab2Page {
   mystatus: any;
+  spinner:boolean=false;
   username;
   statusStatus: string;
   constructor(
@@ -25,12 +26,14 @@ export class Tab2Page {
     if (this.statusStatus == undefined) {
       this.emptyFields();
     } else {
-      this.presentLoading();
+      this.spinner=true;
       let username = localStorage.getItem("username");
       this.myapi.statusUpdate(this.statusStatus, username).subscribe((data) => {
         if (data == true) {
+          this.spinner=false;
           this.success();
         } else {
+          this.spinner=false;
           this.failed();
         }
       });
@@ -43,15 +46,7 @@ export class Tab2Page {
       this.mystatus = x;
     });
   }
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      cssClass: "my-custom-class",
-      message: "Please wait...",
-      duration: 2000,
-    });
-    await loading.present();
-    console.log("Loading dismissed!");
-  }
+  
   iterateFunction() {
     interval(5000).subscribe((x) => {
       this.getMystatus();

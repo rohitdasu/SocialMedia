@@ -15,6 +15,7 @@ import { AlertController, LoadingController } from "@ionic/angular";
 })
 export class EditpasswordPage implements OnInit {
   oldPassword: string;
+  spinner:boolean=false;
   newPassword: string;
   Formupdate: FormGroup;
   constructor(
@@ -63,15 +64,6 @@ export class EditpasswordPage implements OnInit {
 
     await alert.present();
   }
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      cssClass: "my-custom-class",
-      message: "Please wait...",
-      duration: 2000,
-    });
-    await loading.present();
-    console.log("Loading dismissed!");
-  }
   async success() {
     const alert = await this.alertController.create({
       header: "Success",
@@ -94,13 +86,15 @@ export class EditpasswordPage implements OnInit {
         this.wrongOldPassword();
       } else {
         if (this.Formupdate.valid) {
-          this.presentLoading();
+          this.spinner=true;
           this.myapi
             .updatePassword(data.username, data.password)
             .subscribe((Response) => {
               if (Response == true) {
+                this.spinner=false;
                 this.success();
               } else {
+                this.spinner=false;
                 this.fail();
               }
             });

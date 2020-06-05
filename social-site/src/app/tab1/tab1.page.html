@@ -52,11 +52,6 @@
     <p style="margin: 3%; color: black;">Featured Users</p>
   </ion-card>
 
-  <!-- Crescent -->
-  <p style="text-align: center; font-size: xx-large;" *ngIf="!users && !publicStatus">
-    <ion-spinner name="crescent"></ion-spinner>
-  </p>
-
   <ion-slides [options]="slideOptions" style="margin: 2%;">
     <ion-slide class="slide" *ngFor="let user of users">
       <p style="font-size: xx-small; margin-top: 90%;">
@@ -64,6 +59,19 @@
       </p>
     </ion-slide>
   </ion-slides>
+
+  <ion-slides [options]="slideOptions" style="margin: 2%;" *ngIf="!users">
+    <ion-slide>
+      <ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text>
+    </ion-slide>
+    <ion-slide>
+      <ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text>
+    </ion-slide>
+    <ion-slide>
+      <ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text>
+    </ion-slide>
+  </ion-slides>
+
   <ion-card *ngFor="let status of publicStatus">
     <ion-card-header
       style="
@@ -87,6 +95,40 @@
     ><br /><br /><br />
     <ion-card-content style="font-size: x-small;">
       <p style="text-align: left;">{{status.body}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="!publicStatus">
+    <ion-card-header>
+      <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
+    </ion-card-header>
+    <ion-card-header>
+      <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="!publicStatus">
+    <ion-card-header>
+      <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
+    </ion-card-header>
+    <ion-card-header>
+      <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="!publicStatus">
+    <ion-card-header>
+      <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
+    </ion-card-header>
+    <ion-card-header>
+      <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
     </ion-card-content>
   </ion-card>
 </ion-content>
