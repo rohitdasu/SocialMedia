@@ -22,6 +22,7 @@ export class Tab1Page {
   };
   publicStatus: any;
   users: any;
+  token = localStorage.getItem("token");
   constructor(private myapi: ApicallsService, private _router: Router) {
     this.getAllData();
     this.iterateFunction();
@@ -30,12 +31,12 @@ export class Tab1Page {
     this._router.navigate(["chatroom"]);
   }
   getAllData() {
-    this.myapi.getPublicStatus().subscribe((Response) => {
+    this.myapi.getPublicStatus(this.token).subscribe((Response) => {
       var x = JSON.parse(JSON.stringify(Response));
       x.reverse();
       this.publicStatus = x;
     });
-    this.myapi.getUsers().subscribe((Response) => {
+    this.myapi.getUsers(this.token).subscribe((Response) => {
       this.users = Response;
     });
   }

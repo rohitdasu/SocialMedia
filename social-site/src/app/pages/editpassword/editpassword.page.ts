@@ -17,6 +17,7 @@ export class EditpasswordPage implements OnInit {
   oldPassword: string;
   spinner:boolean=false;
   newPassword: string;
+  token = localStorage.getItem("token");
   Formupdate: FormGroup;
   constructor(
     public alertController: AlertController,
@@ -88,7 +89,7 @@ export class EditpasswordPage implements OnInit {
         if (this.Formupdate.valid) {
           this.spinner=true;
           this.myapi
-            .updatePassword(data.username, data.password)
+            .updatePassword(data.username, data.password,this.token)
             .subscribe((Response) => {
               if (Response == true) {
                 this.spinner=false;

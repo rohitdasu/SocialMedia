@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root",
 })
 export class ApicallsService {
-  apiUrl = "https://status-backend.herokuapp.com";
+  apiUrl = "https://status4share-backend.herokuapp.com";
   constructor(private _http: HttpClient, private router: Router) {}
   login(username, password) {
     var data = {
@@ -31,36 +31,30 @@ export class ApicallsService {
     };
     return this._http.post(this.apiUrl + "/recoverPassword", data);
   }
-  getPublicStatus() {
-    return this._http.get(this.apiUrl + "/api/publicStatus");
+  getPublicStatus(token) {
+    return this._http.get(this.apiUrl + "/api/publicStatus", {
+      headers: { token: token },
+    });
   }
-  getUsers() {
-    return this._http.get(this.apiUrl + "/api/viewUsernames");
+  getUsers(token) {
+    return this._http.get(this.apiUrl + "/api/viewUsernames", {
+      headers: { token: token },
+    });
   }
-  statusUpdate(status, username) {
-    var data = {
-      body: status,
-      username: username,
-    };
-    return this._http.post(this.apiUrl + "/api/publicStatus", data);
+  statusUpdate(status, username, token) {
+    return this._http.get(this.apiUrl + "/api/AddpublicStatus", {
+      headers: { body: status, username: username, token: token },
+    });
   }
-  getMystatus(username) {
-    var data = {
-      username: username,
-    };
-    return this._http.post(this.apiUrl + "/api/myStatus", data);
+  getMystatus(username, token) {
+    return this._http.get(this.apiUrl + "/api/myStatus", {
+      headers: { username: username, token: token },
+    });
   }
-  getUserinfo(username) {
-    var data = {
-      username: username,
-    };
-    return this._http.post(this.apiUrl + "/userinfo", data);
+  getUserinfo(username,token) {
+    return this._http.get(this.apiUrl + "/userinfo", {headers:{username:username,token:token}});
   }
-  updatePassword(username, password) {
-    var data = {
-      username: username,
-      password: password,
-    };
-    return this._http.post(this.apiUrl + "/updatePassword", data);
+  updatePassword(username, password,token) {
+    return this._http.get(this.apiUrl + "/updatePassword", {headers:{username:username,password:password,token:token}});
   }
 }

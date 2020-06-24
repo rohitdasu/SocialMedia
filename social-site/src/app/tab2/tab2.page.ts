@@ -10,9 +10,10 @@ import { AlertController, LoadingController } from "@ionic/angular";
 })
 export class Tab2Page {
   mystatus: any;
-  spinner:boolean=false;
+  spinner: boolean = false;
   username;
   statusStatus: string;
+  token = localStorage.getItem("token");
   constructor(
     private myapi: ApicallsService,
     public alertController: AlertController,
@@ -26,27 +27,29 @@ export class Tab2Page {
     if (this.statusStatus == undefined) {
       this.emptyFields();
     } else {
-      this.spinner=true;
+      this.spinner = true;
       let username = localStorage.getItem("username");
-      this.myapi.statusUpdate(this.statusStatus, username).subscribe((data) => {
-        if (data == true) {
-          this.spinner=false;
-          this.success();
-        } else {
-          this.spinner=false;
-          this.failed();
-        }
-      });
+      this.myapi
+        .statusUpdate(this.statusStatus, username, this.token)
+        .subscribe((data) => {
+          if (data == true) {
+            this.spinner = false;
+            this.success();
+          } else {
+            this.spinner = false;
+            this.failed();
+          }
+        });
     }
   }
   getMystatus() {
-    this.myapi.getMystatus(this.username).subscribe((Response) => {
+    this.myapi.getMystatus(this.username, this.token).subscribe((Response) => {
       var x = JSON.parse(JSON.stringify(Response));
       x.reverse();
       this.mystatus = x;
     });
   }
-  
+
   iterateFunction() {
     interval(5000).subscribe((x) => {
       this.getMystatus();

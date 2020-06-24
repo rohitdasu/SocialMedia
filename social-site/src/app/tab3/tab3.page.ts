@@ -17,6 +17,7 @@ export class Tab3Page implements OnInit {
   username: string;
   name: string;
   userValue: Iuserdata;
+  token = localStorage.getItem("token");
   constructor(private myapi: ApicallsService, private _router: Router) {
     this.iterateFunction();
   }
@@ -28,6 +29,7 @@ export class Tab3Page implements OnInit {
   }
   logout() {
     localStorage.removeItem("username");
+    localStorage.removeItem("token");
     localStorage.clear();
     this._router.navigate(["/"]);
   }
@@ -43,7 +45,7 @@ export class Tab3Page implements OnInit {
     if (localStorage.getItem("username") == null) {
     } else {
       this.myapi
-        .getUserinfo(localStorage.getItem("username"))
+        .getUserinfo(localStorage.getItem("username"),this.token)
         .subscribe((userinfo) => {
           this.userdata = userinfo;
           this.userdata = JSON.stringify(this.userdata);

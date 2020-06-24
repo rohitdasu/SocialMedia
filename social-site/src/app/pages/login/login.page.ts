@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AlertController, LoadingController } from "@ionic/angular";
 import { ApicallsService } from "src/app/shared/apicalls.service";
 import { Router } from "@angular/router";
-
+import {Itoken} from "../../shared/itoken"
 @Component({
   selector: "app-login",
   templateUrl: "./login.page.html",
@@ -10,6 +10,8 @@ import { Router } from "@angular/router";
 })
 export class LoginPage implements OnInit {
   spinner:boolean=false;
+  itoken: Itoken;
+  mid: any;
   login = { username: "", password: "" };
   constructor(
     public alertController: AlertController,
@@ -27,8 +29,11 @@ export class LoginPage implements OnInit {
       this.apicalls
         .login(this.login.username, this.login.password)
         .subscribe((data) => {
-          if (data == true) {
+          this.mid = data;
+          this.itoken = this.mid;
+          if (this.itoken.token) {
             this.spinner=false;
+            localStorage.setItem("token",this.itoken.token);
             localStorage.setItem("username", this.login.username);
             this.login.username="";
             this.login.password="";
